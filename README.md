@@ -74,14 +74,15 @@ To set up the project after pulling it from GitHub, follow these steps:
 
 10. **Add Midtrans Configuration**: 
     - Open the `.env` file and add the following lines:
-        
-        <-- existing .env config -->
+    ```bash
+    <-- existing .env config -->
 
-        MIDTRANS_SERVER_KEY=<your midtrans server key>
-        MIDTRANS_CLIENT_KEY=<your midtrans client key>
+        MIDTRANS_SERVER_KEY=your midtrans server key
+        MIDTRANS_CLIENT_KEY=your midtrans client key
         MIDTRANS_IS_PRODUCTION=false
         MIDTRANS_IS_SANITIZED=true
         MIDTRANS_IS_3DS=true
+    ```
 
 11. **Serve the Application**: 
 
