@@ -70,9 +70,9 @@
                         </tbody>
                     </table>
                     <!-- Pagination Links -->
-                <div class="mt-8">
-                    {{ $transactions->links('pagination::tailwind') }}
-                </div>
+                    <div class="mt-8">
+                        {{ $transactions->links('pagination::tailwind') }}
+                    </div>
                 </div>
 
             </div>

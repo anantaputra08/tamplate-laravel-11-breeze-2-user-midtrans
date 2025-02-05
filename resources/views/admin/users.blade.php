@@ -70,10 +70,11 @@
                                             {{ svg('heroicon-o-pencil-square', 'w-5 h-5') }}
                                             <span class="text-sm">Edit</span>
                                         </a>
-                                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline-block">
+                                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
+                                            class="inline-block">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" 
+                                            <button type="button"
                                                 class="delete-btn bg-red-200 hover:bg-red-300 text-red-800 font-semibold py-2 px-4 rounded-lg shadow-sm transition-all duration-300 flex items-center gap-2"
                                                 onclick="confirmDelete(event, this)">
                                                 {{ svg('heroicon-o-trash', 'w-5 h-5') }}
@@ -85,7 +86,10 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                    <!-- Pagination Links -->
+                    <div class="mt-8">
+                        {{ $users->links('pagination::tailwind') }}
+                    </div>
                 </div>
             </div>
         </div>
