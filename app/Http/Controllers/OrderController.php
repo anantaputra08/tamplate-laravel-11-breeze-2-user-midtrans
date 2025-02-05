@@ -19,17 +19,24 @@ class OrderController extends Controller
     {
         // Check if the authenticated user is an admin
         if (Auth::user()->role === 'admin') {
-            // Get all transactions for admin
-            $transactions = Transaction::with('product', 'user')->get();
+            // Get all transactions for admin in descending order
+            $transactions = Transaction::with('product', 'user')
+                ->orderBy('created_at', 'desc')
+                ->get();
             return view('admin.orders.index', compact('transactions'));
         } elseif (Auth::user()->role === 'user') {
-            // Get only the user's transactions for regular users
-            $transactions = Transaction::where('user_id', Auth::id())->with('product')->get();
+            // Get only the user's transactions for regular users in descending order
+            $transactions = Transaction::where('user_id', Auth::id())
+                ->with('product')
+                ->orderBy('created_at', 'desc')
+                ->get();
             return view('user.order.index', compact('transactions'));
         }
+
         // Optionally handle other roles or default case
         return redirect()->route('forbidden');
     }
+
     public function create()
     {
         // Handle the creation of new orders

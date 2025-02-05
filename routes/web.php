@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HandlePaymentNotifController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
@@ -14,9 +16,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('user.dashboard'); // Updated path to the dashboard view
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('user.dashboard'); // Updated path to the dashboard view
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 // Authenticated User Routes
 Route::middleware('auth')->group(function () {
@@ -30,16 +36,15 @@ Route::middleware(['auth', \App\Http\Middleware\RoleMiddleware::class . ':admin'
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard'); // Admin dashboard view
-        })->name('dashboard');
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])
+            ->name('dashboard');
 
         Route::resource('users', UserController::class)->except(['show']);
         Route::resource('products', ProductController::class)->except(['show']);
         Route::resource('orders', OrderController::class);
     });
 
-    Route::middleware(['auth', \App\Http\Middleware\RoleMiddleware::class . ':user'])
+Route::middleware(['auth', \App\Http\Middleware\RoleMiddleware::class . ':user'])
     ->prefix('user')
     ->name('user.')
     ->group(function () {
