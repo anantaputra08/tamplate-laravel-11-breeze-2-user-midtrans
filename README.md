@@ -73,7 +73,7 @@ To set up the project after pulling it from GitHub, follow these steps:
    ```
 
 10. **Add Midtrans Configuration**: 
-    - Open the `.env` file and add the following lines:
+    Open the `.env` file and add the following lines:
     ```bash
     <-- existing .env config -->
 
