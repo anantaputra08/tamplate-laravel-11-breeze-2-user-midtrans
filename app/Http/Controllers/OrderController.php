@@ -21,8 +21,7 @@ class OrderController extends Controller
         if (Auth::user()->role === 'admin') {
             // Get all transactions for admin in descending order
             $transactions = Transaction::with('product', 'user')
-                ->orderBy('created_at', 'desc')
-                ->get();
+                ->orderBy('created_at', 'desc')->paginate(10);
             return view('admin.orders.index', compact('transactions'));
         } elseif (Auth::user()->role === 'user') {
             // Get only the user's transactions for regular users in descending order

@@ -24,7 +24,7 @@
                             {{ __('Users List') }}
                         </h3>
                         <a href="{{ route('admin.users.create') }}"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            class="bg-blue-200 hover:bg-blue-400 text-blue-800 font-bold py-2 px-4 rounded-lg">
                             {{ __('Create User') }}
                         </a>
                     </div>
@@ -46,7 +46,7 @@
                                     {{ __('Role') }}
                                 </th>
                                 <th scope="col"
-                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-700 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-700 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                     {{ __('Actions') }}
                                 </th>
                             </tr>
@@ -64,25 +64,22 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                                         {{ $user->role }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <td class="px-6 py-4 whitespace flex justify-center space-x-2">
                                         <a href="{{ route('admin.users.edit', $user->id) }}"
-                                            class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-500">{{ __('Edit') }}</a>
-
-                                        {{-- Button Delete dengan SweetAlert --}}
-                                        <button type="button"
-                                            class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-500 ml-4 delete-btn"
-                                            data-id="{{ $user->id }}">
-                                            {{ __('Delete') }}
-                                        </button>
-
-                                        {{-- Form Delete (Tersembunyi) --}}
-                                        <form id="delete-form-{{ $user->id }}"
-                                            action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
-                                            class="hidden">
+                                            class="bg-yellow-200 hover:bg-yellow-300 text-yellow-800 font-semibold py-2 px-4 rounded-lg shadow-sm transition-all duration-300 flex items-center gap-2">
+                                            {{ svg('heroicon-o-pencil-square', 'w-5 h-5') }}
+                                            <span class="text-sm">Edit</span>
+                                        </a>
+                                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline-block">
                                             @csrf
                                             @method('DELETE')
+                                            <button type="button" 
+                                                class="delete-btn bg-red-200 hover:bg-red-300 text-red-800 font-semibold py-2 px-4 rounded-lg shadow-sm transition-all duration-300 flex items-center gap-2"
+                                                onclick="confirmDelete(event, this)">
+                                                {{ svg('heroicon-o-trash', 'w-5 h-5') }}
+                                                <span class="text-sm">Delete</span>
+                                            </button>
                                         </form>
-
                                     </td>
                                 </tr>
                             @endforeach
@@ -124,7 +121,7 @@
                         cancelButtonText: "Cancel"
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            document.getElementById("delete-form-" + userId).submit();
+                            button.closest('form').submit();
                         }
                     });
                 });
