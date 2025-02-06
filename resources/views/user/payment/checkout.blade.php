@@ -35,7 +35,7 @@
 
                         <div class="p-6">
                             <button id="pay-button" type="button"
-                                class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 text-lg rounded-lg transition duration-300">
+                                class="w-full bg-blue-200 hover:bg-blue-400 text-blue-800 font-bold py-2 px-4 rounded-lg transition duration-300">
                                 Proceed to Payment
                             </button>
                         </div>

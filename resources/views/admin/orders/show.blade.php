@@ -30,7 +30,7 @@
                         <label class="block text-sm font-medium text-gray-700">Date</label>
                         <div>{{ $transaction->created_at->format('d M Y H:i:s') }}</div>
                     </div>
-                    <a href="{{ route('admin.orders.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <a href="{{ route('admin.orders.index') }}" class="bg-blue-200 hover:bg-blue-400 text-blue-800 font-bold py-2 px-4 rounded-lg">
                         Back to Orders
                     </a>
                 </div>

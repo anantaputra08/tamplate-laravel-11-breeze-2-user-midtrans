@@ -13,30 +13,39 @@
                     <form action="{{ route('admin.orders.store') }}" method="POST">
                         @csrf
                         <div class="mb-4">
-                            <label for="user_id" class="block text-sm font-medium text-gray-700">User</label>
-                            <select name="user_id" id="user_id" class="block w-full mt-1">
-                                @foreach($users as $user)
+                            <label for="user_id"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __(key: 'User') }}</label>
+                            <select name="user_id" id="user_id"
+                                class="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-700 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 sm:text-sm transition duration-300 ease-in-out">
+                                @foreach ($users as $user)
                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-4">
-                            <label for="product_id" class="block text-sm font-medium text-gray-700">Product</label>
-                            <select name="product_id" id="product_id" class="block w-full mt-1">
-                                @foreach($products as $product)
+                            <label for="product_id"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __(key: 'Product') }}</label>
+                            <select name="product_id" id="product_id"
+                                class="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-700 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 sm:text-sm transition duration-300 ease-in-out">
+                                @foreach ($products as $product)
                                     <option value="{{ $product->id }}">{{ $product->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-4">
                             <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
-                            <input type="text" name="amount" id="amount" class="block w-full mt-1" value="{{ old('amount') }}">
+                            <input type="text" name="amount" id="amount"
+                                class="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-700 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 sm:text-sm transition duration-300 ease-in-out"
+                                value="{{ old('amount') }}">
                         </div>
                         <div class="mb-4">
                             <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                            <input type="text" name="status" id="status" class="block w-full mt-1" value="{{ old('status') }}">
+                            <input type="text" name="status" id="status"
+                                class="mt-1 block w-full rounded-lg border-gray-300 dark:border-gray-700 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 sm:text-sm transition duration-300 ease-in-out"
+                                value="{{ old('status') }}">
                         </div>
-                        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        <button type="submit"
+                            class="bg-blue-200 hover:bg-blue-400 text-blue-800 font-bold py-2 px-4 rounded-lg">
                             Save Order
                         </button>
                     </form>

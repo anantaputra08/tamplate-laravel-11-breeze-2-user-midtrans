@@ -28,7 +28,7 @@ class OrderController extends Controller
             $transactions = Transaction::where('user_id', Auth::id())
                 ->with('product')
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->paginate(10);
             return view('user.order.index', compact('transactions'));
         }
 

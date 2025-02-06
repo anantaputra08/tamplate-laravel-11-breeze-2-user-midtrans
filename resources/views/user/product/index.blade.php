@@ -36,9 +36,18 @@
                                     </p>
                                 </div>
                                 <div class="px-6 pt-4 pb-2">
-                                    <a href="{{ route('user.checkout', ['product_id' => $product->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full text-center block">
-                                        Check Out
-                                    </a>
+                                    @if ($product->stock > 0)
+                                        <a href="{{ route('user.checkout', ['product_id' => $product->id]) }}" 
+                                            class="bg-blue-200 hover:bg-blue-400 text-blue-800 font-bold py-2 px-4 rounded-lg w-full text-center block">
+                                            Check Out
+                                        </a>
+                                    @else
+                                        <a href="#" 
+                                            class="bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg w-full text-center block cursor-not-allowed" 
+                                            onclick="return false;">
+                                            Out of Stock
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach

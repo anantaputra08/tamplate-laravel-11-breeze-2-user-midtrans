@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Midtrans\Config;
 use Midtrans\Notification;
@@ -19,6 +20,20 @@ class PaymentController extends Controller
         // Check if the product stock is sufficient
         if ($product->stock < 1) {
             return redirect()->back()->withErrors(['error' => 'Insufficient stock for the selected product']);
+        }
+
+        // Check if there is already a transaction for the same product on the same day
+        $today = Carbon::today();
+        $transaction = Transaction::where('user_id', Auth::id())
+            ->where('product_id', $product_id)
+            ->where('status', 'pending')
+            ->whereDate('created_at', $today)
+            ->first();
+
+        if ($transaction) {
+            // Redirect to the Snap payment page with the existing transaction
+            $snapToken = $transaction->snapToken;
+            return view('user.payment.checkout', compact('snapToken', 'transaction', 'product'));
         }
 
         // Configure Midtrans
@@ -81,7 +96,6 @@ class PaymentController extends Controller
             return redirect()->back()->withErrors(['error' => 'Failed to process payment: ' . $e->getMessage()]);
         }
     }
-
 
     public function paymentSuccess(Request $request)
     {
