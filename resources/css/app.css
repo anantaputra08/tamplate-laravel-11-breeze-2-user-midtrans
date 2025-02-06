@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-uniform {
+    padding: 10px 20px; /* Atur padding sesuai kebutuhan Anda */
+    font-size: 14px; /* Atur ukuran font sesuai kebutuhan Anda */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Atur jarak antara ikon dan teks */
+    text-align: center;
+}
+
+.button-uniform svg {
+    width: 20px; /* Atur ukuran ikon */
+    height: 20px; /* Atur ukuran ikon */
+}

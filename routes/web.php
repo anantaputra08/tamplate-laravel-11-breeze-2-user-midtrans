@@ -42,6 +42,10 @@ Route::middleware(['auth', \App\Http\Middleware\RoleMiddleware::class . ':admin'
         Route::resource('users', UserController::class)->except(['show']);
         Route::resource('products', ProductController::class)->except(['show']);
         Route::resource('orders', OrderController::class);
+        Route::patch('orders/{order}/complete', [OrderController::class, 'markAsCompleted'])
+            ->name('orders.complete');
+
+
     });
 
 Route::middleware(['auth', \App\Http\Middleware\RoleMiddleware::class . ':user'])

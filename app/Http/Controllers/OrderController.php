@@ -35,6 +35,15 @@ class OrderController extends Controller
         // Optionally handle other roles or default case
         return redirect()->route('forbidden');
     }
+    public function markAsCompleted($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $transaction->status = 'completed';
+        $transaction->save();
+
+        return redirect()->route('admin.orders.index')->with('success', 'Order marked as completed.');
+    }
+
 
     public function create()
     {
