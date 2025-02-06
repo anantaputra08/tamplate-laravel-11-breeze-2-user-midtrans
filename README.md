@@ -7,6 +7,8 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## In Dev!! Stay tune the update
+
 ## Setup Instructions
 
 To set up the project after pulling it from GitHub, follow these steps:
