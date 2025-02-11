@@ -43,9 +43,9 @@
                 {{ __('Register') }}
             </a>
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <button type="submit" class="bg-blue-200 hover:bg-blue-400 text-blue-800 font-bold py-2 px-4 rounded-lg ms-3">
+                {{ __('Log In') }}
+            </button>
         </div>
     </form>
 </x-guest-layout>
